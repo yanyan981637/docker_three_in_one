@@ -1,0 +1,56 @@
+server {
+	# SSL configuration
+	server_name 127.0.0.1;
+	listen 80 default_server;
+
+	root /var/www/html;
+	# Add index.php to the list if you are using PHP
+	index index.php index.html index.htm index.nginx-debian.html;
+
+	access_log /var/log/nginx/access.log apm1;
+	error_log /var/log/nginx/error.log;
+
+	add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+	add_header Content-Security-Policy "frame-ancestors 'self';";
+
+	error_page 403 @maintenance1;
+	error_page 404 @maintenance2;
+	error_page 503 @maintenance3;
+
+	location @maintenance1 {
+		root /data/maintenance;
+		rewrite ^(.*)$ /403_404.html break;
+	}
+
+	location @maintenance2 {
+		root /data/maintenance;
+		rewrite ^(.*)$ /404.html break;
+	}
+
+	location @maintenance3 {
+		root /data/maintenance;
+		rewrite ^(.*)$ /maintenance-mio-normal.html break;
+	}
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	include /etc/nginx/location.d/maintenance-setting.conf;
+
+	location ~ \.php$ {
+		try_files $uri $uri/;
+		fastcgi_pass php-fpm-7.4:9000;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+		fastcgi_read_timeout 120;
+		fastcgi_connect_timeout 120;
+		fastcgi_send_timeout 120;
+		fastcgi_buffer_size 2M;
+		fastcgi_buffers 8 2M;
+		fastcgi_busy_buffers_size 2M;
+		fastcgi_temp_file_write_size 2M;
+	}
+
+}

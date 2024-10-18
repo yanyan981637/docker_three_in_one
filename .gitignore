@@ -1,0 +1,5 @@
+server.pem
+server.crt
+server.key
+nginx/var/log/nginx/*
+nginx/ssl/*

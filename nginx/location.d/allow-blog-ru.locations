@@ -1,0 +1,56 @@
+# Admin Path - Start
+	location ~ ^/ru/(wp-admin|wp-login\.php)($|/) {
+#	MiTAC Office
+		allow 203.66.161.0/24;
+		allow 203.66.162.248/32;
+		allow 203.66.162.249/32;
+		allow 203.66.162.250/32;
+		allow 203.66.162.251/32;
+		allow 118.163.39.90/32;
+		allow 220.128.238.121/32;
+		allow 220.130.36.2/32;
+		allow 60.251.239.153/32;
+		allow 113.196.154.130/32;
+		allow 113.196.137.194/32;
+		allow 61.220.246.132/32;
+#	MiTAC Office (new)
+		allow 60.248.18.208/32;
+		allow 60.248.18.209/32;
+		allow 60.248.18.210/32;
+        allow 122.147.168.245/32;
+        allow 122.147.168.246/32;
+        allow 122.147.168.247/32;
+#       MiTAC Office (will remove at 22/1/31)
+        allow 60.248.18.205/32;
+#	MIT
+		allow 221.224.29.0/26;
+		allow 222.92.127.160/32;
+		allow 202.136.208.133/32;
+		allow 202.136.208.134/32;
+#	RU Branch
+		allow 195.133.235.24/29;
+		allow 85.235.164.186/32;
+#	AWS VPN
+		allow 13.56.25.194/32;
+#	LOCAL
+#		allow 127.0.0.1/32;
+#	OTHERS
+		deny all;
+
+		location ~ \.php$ {
+			try_files $uri /tw/wp-login.php?$args @pagenotfound-zone;
+			fastcgi_pass   fastcgi_backend;
+			fastcgi_index  wp-login.php;
+			fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+			fastcgi_param  PATH_INFO        $fastcgi_path_info;
+			include        fastcgi_params;
+		}
+	}
+# Admin Path - End
+
+# XMLRPC Path - Start
+	location ~ ^/ru/xmlrpc.php {
+		deny all;
+	}
+# XMLRPC Path - End
+

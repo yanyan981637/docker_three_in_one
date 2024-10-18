@@ -1,0 +1,5 @@
+# Special Path - Start
+        location ^~ /akamai/ {
+                root /data/maintenance;
+        }
+# Special Path - End

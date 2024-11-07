@@ -17,7 +17,7 @@ services:
       # for nginx common error folder #
       - /var/www/html:/var/www/html
       - /data/mdt:/data/mitacmdt-new
-      - /data/visionmax:/data/visionmax
+      # - /data/visionmax:/data/visionmax
       - /data/mio_class:/data/mio_class
       - /data/cyclo:/data/cyclo
       - /data/ebc:/app/ebc
@@ -46,7 +46,7 @@ services:
       - /var/www/html:/var/www/html
       - /data/mdt:/data/mitacmdt-new
       - /data/mio_class:/data/mio_class
-      - /data/visionmax:/data/visionmax
+      # - /data/visionmax:/data/visionmax
       - /data/cyclo:/data/cyclo
       - ./php/php.ini:/opt/bitnami/php/etc/php.ini
     restart: always

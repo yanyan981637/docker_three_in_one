@@ -31,6 +31,7 @@ rewrite ^/en/safefy-enhancement.php /en/vt-solution.php permanent;
 rewrite ^/en/efficiency-improvement.php /en/vt-solution.php permanent;
 rewrite ^/en/business-collaboration.php /en/vt-solution.php permanent;
 rewrite ^/en/connected-dashcam.php /en/video-telematics.php permanent;
+rewrite ^/en/outdoor-navigation.php /en/navigation.php permanent;
 
 rewrite ^/tw/MiTAC_holdings.php /tw/MiTAC-holdings.php permanent;
 rewrite ^/tw/business_collaboration.php /tw/index.php permanent;
@@ -66,3 +67,4 @@ rewrite ^/tw/smart-dashcam.php /tw/video-telematics.php permanent;
 rewrite ^/tw/safefy-enhancement.php /tw/vt-solution.php permanent;
 rewrite ^/tw/efficiency-improvement.php /tw/vt-solution.php permanent;
 rewrite ^/tw/business-collaboration.php /tw/vt-solution.php permanent;
+rewrite ^/tw/outdoor-navigation.php /tw/navigation.php permanent;

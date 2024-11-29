@@ -36,8 +36,8 @@ services:
       - ./apache/certs:/certs:ro
       - /data/ebc:/app/ebc
     environment:
-      - APACHE_DEFAULT_HTTP_PORT_NUMBER=8080
-      - APACHE_DEFAULT_HTTPS_PORT_NUMBER=8443
+      APACHE_DEFAULT_HTTP_PORT_NUMBER: 8080
+      APACHE_DEFAULT_HTTPS_PORT_NUMBER: 8443
     restart: always
 
   php-fpm-8.2:
@@ -50,11 +50,11 @@ services:
       - /data/cyclo:/data/cyclo
       - ./php/php.ini:/opt/bitnami/php/etc/php.ini
     environment:
-      PHP_FPM_PM=dynamic
-      PHP_FPM_PM_MAX_CHILDREN=50
-      PHP_FPM_PM_START_SERVERS=5
-      PHP_FPM_PM_MAX_SPARE_SERVERS=35
-      PHP_FPM_PM_MAX_REQUESTS=500
+      PHP_FPM_PM: dynamic
+      PHP_FPM_PM_MAX_CHILDREN: "50"
+      PHP_FPM_PM_START_SERVERS: "5"
+      PHP_FPM_PM_MAX_SPARE_SERVERS: "35"
+      PHP_FPM_PM_MAX_REQUESTS: "500"
     restart: always
 
   php-fpm-7.4:
@@ -63,9 +63,9 @@ services:
       - /data/ebc:/app/ebc
       - ./php/php.ini:/opt/bitnami/php/etc/php.ini
     environment:
-      PHP_FPM_PM=dynamic
-      PHP_FPM_PM_MAX_CHILDREN=50
-      PHP_FPM_PM_START_SERVERS=5
-      PHP_FPM_PM_MAX_SPARE_SERVERS=35
-      PHP_FPM_PM_MAX_REQUESTS=500
+      PHP_FPM_PM: dynamic
+      PHP_FPM_PM_MAX_CHILDREN: "50"
+      PHP_FPM_PM_START_SERVERS: "5"
+      PHP_FPM_PM_MAX_SPARE_SERVERS: "35"
+      PHP_FPM_PM_MAX_REQUESTS: "500"
     restart: always

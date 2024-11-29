@@ -49,6 +49,12 @@ services:
       # - /data/visionmax:/data/visionmax
       - /data/cyclo:/data/cyclo
       - ./php/php.ini:/opt/bitnami/php/etc/php.ini
+    environment:
+      PHP_FPM_PM=dynamic
+      PHP_FPM_PM_MAX_CHILDREN=50
+      PHP_FPM_PM_START_SERVERS=5
+      PHP_FPM_PM_MAX_SPARE_SERVERS=35
+      PHP_FPM_PM_MAX_REQUESTS=500
     restart: always
 
   php-fpm-7.4:
@@ -56,4 +62,10 @@ services:
     volumes:
       - /data/ebc:/app/ebc
       - ./php/php.ini:/opt/bitnami/php/etc/php.ini
+    environment:
+      PHP_FPM_PM=dynamic
+      PHP_FPM_PM_MAX_CHILDREN=50
+      PHP_FPM_PM_START_SERVERS=5
+      PHP_FPM_PM_MAX_SPARE_SERVERS=35
+      PHP_FPM_PM_MAX_REQUESTS=500
     restart: always

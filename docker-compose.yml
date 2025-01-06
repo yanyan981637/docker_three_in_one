@@ -13,14 +13,14 @@ services:
       - ./nginx/ssl:/etc/nginx/ssl:ro
       - ./nginx/var/log/nginx:/var/log/nginx
       # for nginx common error folder #
-      - /data/maintenance:/data/maintenance
+      - /data/maintenance:/data/maintenance:ro
       # for nginx common error folder #
-      - /var/www/html:/var/www/html
-      - /data/mdt:/data/mitacmdt-new
+      - /var/www/html:/var/www/html:ro
+      - /data/mdt:/data/mitacmdt-new:ro
       # - /data/visionmax:/data/visionmax
-      - /data/mio_class:/data/mio_class
-      - /data/cyclo:/data/cyclo
-      - /data/ebc:/app/ebc
+      - /data/mio_class:/data/mio_class:ro
+      - /data/cyclo:/data/cyclo:ro
+      - /data/ebc:/app/ebc:ro
     links:
       - php-fpm-8.2
       - php-fpm-7.4
@@ -35,6 +35,10 @@ services:
       - ./apache/myapp.conf:/vhosts/myapp.conf:ro
       - ./apache/certs:/certs:ro
       - /data/ebc:/app/ebc
+      - /data/ebc/config.php:/app/ebc/config.php:ro
+      - /data/ebc/MctBackend/config.php:/app/ebc/MctBackend/config.php:ro
+      - /data/ebc/MCTWEBMGT/config.php:/app/ebc/MCTWEBMGT/config.php:ro
+      - /data/ebc/PartnerZone/config.php:/app/ebc/PartnerZone/config.php:ro
     environment:
       APACHE_DEFAULT_HTTP_PORT_NUMBER: 8080
       APACHE_DEFAULT_HTTPS_PORT_NUMBER: 8443
@@ -48,7 +52,10 @@ services:
       - /data/mio_class:/data/mio_class
       # - /data/visionmax:/data/visionmax
       - /data/cyclo:/data/cyclo
-      - ./php/php.ini:/opt/bitnami/php/etc/php.ini
+      - ./php/php.ini:/opt/bitnami/php/etc/php.ini:ro
+      - /data/mdt/.env:/data/mitacmdt-new/.env:ro
+      - /data/mio_class/tw/wp-config.php:/data/mio_class/tw/wp-config.php:ro
+      - /data/mio_class/ru/wp-config.php:/data/mio_class/ru/wp-config.php:ro
     environment:
       PHP_FPM_PM: dynamic
       PHP_FPM_PM_MAX_CHILDREN: "50"
@@ -61,7 +68,11 @@ services:
     image: bitnami/php-fpm:7.4.33
     volumes:
       - /data/ebc:/app/ebc
-      - ./php/php.ini:/opt/bitnami/php/etc/php.ini
+      - ./php/php.ini:/opt/bitnami/php/etc/php.ini:ro
+      - /data/ebc/config.php:/app/ebc/config.php:ro
+      - /data/ebc/MctBackend/config.php:/app/ebc/MctBackend/config.php:ro
+      - /data/ebc/MCTWEBMGT/config.php:/app/ebc/MCTWEBMGT/config.php:ro
+      - /data/ebc/PartnerZone/config.php:/app/ebc/PartnerZone/config.php:ro
     environment:
       PHP_FPM_PM: dynamic
       PHP_FPM_PM_MAX_CHILDREN: "50"

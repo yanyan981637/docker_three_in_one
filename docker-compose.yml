@@ -45,6 +45,10 @@ services:
     restart: always
 
   php-fpm-8.2:
+    # build:
+    #   context: ./php/82
+    #   dockerfile: Dockerfile
+    # image: custom-php-fpm:8.2
     image: bitnami/php-fpm:8.2.24
     volumes:
       - /var/www/html:/var/www/html
@@ -54,17 +58,23 @@ services:
       - /data/cyclo:/data/cyclo
       - ./php/php.ini:/opt/bitnami/php/etc/php.ini:ro
       - ./php/82/www.conf:/opt/bitnami/php/etc/php-fpm.d/www.conf
+      - ./php/82/log:/var/log
       - /data/mdt/.env:/data/mitacmdt-new/.env:ro
       - /data/mio_class/tw/wp-config.php:/data/mio_class/tw/wp-config.php:ro
       - /data/mio_class/ru/wp-config.php:/data/mio_class/ru/wp-config.php:ro
     restart: always
 
   php-fpm-7.4:
+    # build:
+    #   context: ./php/74
+    #   dockerfile: Dockerfile
+    # image: custom-php-fpm:7.4
     image: bitnami/php-fpm:7.4.33
     volumes:
       - /data/ebc:/app/ebc
       - ./php/php.ini:/opt/bitnami/php/etc/php.ini:ro
       - ./php/74/www.conf:/opt/bitnami/php/etc/php-fpm.d/www.conf
+      - ./php/74/log:/var/log
       - /data/ebc/config.php:/app/ebc/config.php:ro
       - /data/ebc/MctBackend/config.php:/app/ebc/MctBackend/config.php:ro
       - /data/ebc/MCTWEBMGT/config.php:/app/ebc/MCTWEBMGT/config.php:ro

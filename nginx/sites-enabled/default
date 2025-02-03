@@ -19,7 +19,8 @@ server {
 
 	location @maintenance1 {
 		root /data/maintenance;
-		rewrite ^(.*)$ /403_404.html break;
+		# rewrite ^(.*)$ /403_404.html break;
+		rewrite ^(.*)$ /403.html break;
 	}
 
 	location @maintenance2 {

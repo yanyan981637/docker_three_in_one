@@ -3,3 +3,6 @@ server.crt
 server.key
 nginx/var/log/nginx/*
 nginx/ssl/*
+logrotate
+php/74/log/
+php/82/log/

@@ -1,8 +1,9 @@
-server.pem
-server.crt
-server.key
 nginx/var/log/nginx/*
 nginx/ssl/*
 logrotate
-php/74/log/
-php/82/log/
+php/74/log/*
+php/82/log/*
+apache/certs/*
+php-fpm.log
+php8.2-fpm-www.log.slow
+php7.4-fpm-www.log.slow
